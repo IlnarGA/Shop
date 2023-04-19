@@ -50,9 +50,9 @@ public class MainController {
     @GetMapping("/person account")
     public String index(Model model){
         // Получаем объект аутентификации -> с помощью SpringContextHolder обращаемся к контексту и на нем вызываем метод аутентификации. Из сессии текущего пользователя получаем объект, который был положен в данную сессию после аутентификации пользователя
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        String role = personDetails.getPerson().getRole();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();  // берем обькт из сессии
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();  // преобразуем personDetails
+        String role = personDetails.getPerson().getRole();  // из personDetails конкретного пользователя взяли его роль
         if(role.equals("ROLE_ADMIN")){
             return "redirect:/admin";
         }

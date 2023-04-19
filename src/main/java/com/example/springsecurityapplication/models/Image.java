@@ -6,12 +6,12 @@ import jakarta.persistence.*;
 public class Image {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // первичный ключ
     private int id;
 
     private String fileName;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)  // связь с моделью Product
     private Product product;
 
     public Image(int id, String fileName, Product product) {

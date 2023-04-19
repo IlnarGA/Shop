@@ -18,6 +18,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
+
     // Данный метод позволяет получить список всех товаров
     public List<Product> getAllProduct(){
         return productRepository.findAll();
@@ -26,14 +27,14 @@ public class ProductService {
     // Данный метод позволяет получить товар по id
     public Product getProductId(int id){
         Optional<Product> optionalProduct = productRepository.findById(id);
-        return optionalProduct.orElse(null);
+        return optionalProduct.orElse(null);  // если товар найден мы его возвращаем если нет то null
     }
 
     // Данный метод позволяет сохранить товар
     @Transactional
     public void saveProduct(Product product, Category category){
-        product.setCategory(category);
-        productRepository.save(product);
+        product.setCategory(category);  // к продукту привязаваем нужную категорию
+        productRepository.save(product);  // обьект продукта сохраняем
     }
 
     // Данный метод позволяет обновить данные о товаре

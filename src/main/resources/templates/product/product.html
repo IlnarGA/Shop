@@ -13,7 +13,7 @@
         <label for="search">Поиск по наименованию</label>
         <input type="text" id="search" name="search" th:value="*{value_search}">
         <br>
-        <p>Цена, P</p>
+        <p>Цена, руб</p>
         <label for="ot">От</label>
         <input type="text" name="ot" id="ot" th:value="*{value_price_ot}">
         <label for="do">До</label>
@@ -23,8 +23,7 @@
         <div>
             <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
             <label for="ascending_price">Отсортировать по возрастанию цены</label>
-            <input type="radio" id="descending_price" name="price"
-                   value="sorted_by_descending_price">
+            <input type="radio" id="descending_price" name="price" value="sorted_by_descending_price">
             <label for="descending_price">Отсортировать по убыванию цены</label>
             <p>Категория товаров: </p>
             <input type="radio" id="furniture" name="contract" value="furniture">

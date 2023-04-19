@@ -15,5 +15,11 @@
     <p th:text="'Дата заказа: ' + ${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
     <p th:text="'Cтатус: ' + ${order.getStatus()}">
 </div>
+<br>
+<br>
+<form method="get" th:action="@{/person account}">
+    <input type="submit" value="Назад">
+</form>
+<br>
 </body>
 </html>

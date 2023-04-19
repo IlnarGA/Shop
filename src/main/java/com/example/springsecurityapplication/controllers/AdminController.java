@@ -22,7 +22,7 @@ public class AdminController {
 
     private final ProductService productService;
 
-    @Value("${upload.path}")
+    @Value("${upload.path}")  // внедряем папку с файлами
     private String uploadPath;
 
     private final CategoryRepository categoryRepository;
@@ -34,8 +34,8 @@ public class AdminController {
 
     @GetMapping("admin/product/add")
     public String addProduct(Model model){
-        model.addAttribute("product", new Product());
-        model.addAttribute("category", categoryRepository.findAll());
+        model.addAttribute("product", new Product());  // обьект продукта кладем в модель
+        model.addAttribute("category", categoryRepository.findAll());  // категории кладем в модель
         return "product/addProduct";
     }
 
@@ -139,7 +139,7 @@ public class AdminController {
     @GetMapping("admin/product/edit/{id}")
     public String editProduct(Model model, @PathVariable("id") int id){
         model.addAttribute("product", productService.getProductId(id));
-        model.addAttribute("category", categoryRepository.findAll());
+        model.addAttribute("category", categoryRepository.findAll());  // список категорий
         return "product/editProduct";
 
 
@@ -148,7 +148,7 @@ public class AdminController {
     @PostMapping("admin/product/edit/{id}")
     public String editProduct(@ModelAttribute("product") @Valid Product product, BindingResult bindingResult, @PathVariable("id") int id, Model model){
         if(bindingResult.hasErrors()){
-            model.addAttribute("category", categoryRepository.findAll());
+            model.addAttribute("category", categoryRepository.findAll());  // список категорий
             return "product/editProduct";
         }
         productService.updateProduct(id, product);

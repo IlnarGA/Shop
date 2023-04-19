@@ -14,5 +14,4 @@ public class AuthenticationController {
     public String login(){
         return "authentication";
     }
-
 }

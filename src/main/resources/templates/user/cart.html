@@ -16,5 +16,11 @@
 </div>
 <h3 th:text="'Итоговая цена: ' + ${price}"></h3>
 <a href="/order/create">Оформить заказ</a>
+<br>
+<br>
+<form method="get" th:action="@{/person account}">
+    <input type="submit" value="Назад">
+</form>
+<br>
 </body>
 </html>

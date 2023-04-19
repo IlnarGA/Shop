@@ -12,43 +12,46 @@ import java.util.List;
 public class Product {
 
     @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id") // настройки поля
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // первичный ключ
     private int id;
 
-    @Column(name = "title", nullable = false, columnDefinition = "text", unique = true)
-    @NotEmpty(message = "Наименование товара не может быть пустым")
+    @Column(name = "title", nullable = false, columnDefinition = "text", unique = true) // настройки поля
+    @NotEmpty(message = "Наименование товара не может быть пустым") // валидация
     private String title;
 
-    @Column(name = "description", nullable = false, columnDefinition = "text")
-    @NotEmpty(message = "Описание товара не может быть пустым")
+    @Column(name = "description", nullable = false, columnDefinition = "text") // настройки поля
+    @NotEmpty(message = "Описание товара не может быть пустым") // валидация
     private String description;
 
-    @Column(name = "price", nullable = false)
-    @Min(value = 1 , message = "Цена товара не может быть отрицательной или нулевой")
+    @Column(name = "price", nullable = false) // настройки поля
+    @Min(value = 1 , message = "Цена товара не может быть отрицательной или нулевой") // валидация
     private float price;
 
-    @Column(name = "warehouse", nullable = false)
-    @NotEmpty(message = "Cклад по нахождению товара не может быть пустым")
+    @Column(name = "warehouse", nullable = false) // настройки поля
+    @NotEmpty(message = "Cклад по нахождению товара не может быть пустым") // валидация
     private String warehouse;
 
-    @Column(name = "seller", nullable = false)
-    @NotEmpty(message = "Информация о продавце не может быть пустой")
+    @Column(name = "seller", nullable = false) // настройки поля
+    @NotEmpty(message = "Информация о продавце не может быть пустой") // валидация
     private String seller;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false)  // связь с моделью Категория
     private Category category;
 
-    private LocalDateTime dateTime;
+    private LocalDateTime dateTime; // дата и врема добавления товара
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product") // связь с моделью Image
     private List<Image> imageList = new ArrayList<>();
+
+
 
     // Данный метод позволяет добавить фотографию в лист текущего продукта
     public void addImageToProduct(Image image){
-        image.setProduct(this);
+        image.setProduct(this); // для кокого товара будет предназначена фотография
         imageList.add(image);
     }
+
     // Данный метод будет заполнять поле даты и времени при создании объекта класса
     @PrePersist
     private void init(){
