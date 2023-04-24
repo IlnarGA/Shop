@@ -1,0 +1,91 @@
+#forma
+{
+    background: white;
+    margin:0 auto;
+    padding:25px 0 0;
+    text-align: center;
+    width: 500px;
+    height: 420px;
+}
+
+#forma h1
+{
+    color: rgba(43, 84, 159, 0.884);
+    font: bold 25px Arial;
+
+}
+
+#forma input[type="text"],
+#forma input[type="password"],
+#forma input[type="date"],
+#forma input[type="email"]
+{
+    border: 1px solid gray;
+    color: grey;
+    font: Arial 14px;
+    margin: 0 0 10px;
+    padding: 15px 10px 15px 40px;
+    width: 400px;
+    height: 45px;
+    background: url(https://lmsdo.rea.ru/pluginfile.php/31172/mod_resource/content/0/icons.png) no-repeat;
+}
+
+font
+{
+    color: grey;
+    font: 14px Arial;
+
+}
+
+#username
+{
+    background-position: 4px -69px !important;
+}
+
+#password
+{
+    background-position: 4px -102px !important;
+}
+
+#date
+{
+    background-position: 4px -34px !important;
+}
+
+#email
+{
+    background-position: 4px 0px !important;
+}
+
+#forma input[type="text"]:focus,
+#forma input[type="password"]:focus,
+#forma input[type="date"]:focus,
+#forma input[type="email"]:focus
+{
+    border: 1px solid rgb(175,210,219);
+    outline: none;
+}
+
+#forma input[type="submit"]
+{
+    background:rgba(43, 84, 159, 0.884);
+    border:1px solid rgb(175,210,219);
+    font: bold 16px Arial;
+    width: 450px;
+    height: 50px;
+    margin-top: 15px;
+    border-radius: 50px;
+    color: white;
+}
+
+#forma input[type="submit"]:hover
+{
+    background:rgb(246, 97, 9);
+    /* color: rgb(246, 97, 9); */
+    border: none;
+}
+
+img{
+    width: 300px;
+    margin-bottom: 100px;
+}

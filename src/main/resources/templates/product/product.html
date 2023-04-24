@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cписок товаров</title>
+    <title>Главная страница</title>
+<!--    <link th:href="@{css/index.css}" rel="stylesheet"/>-->
+
 </head>
 <body>
 <h1>Главная страница магазина</h1>
+<h2>Войти, зарегистрироваться в личном кабинете</h2>
+<form method="get" th:action="@{/authentication}">
+    <input type="submit" value="Вход">
+</form>
 <h3>Cортировка, поиск, фильтрация</h3>
 <form th:method="POST" th:action="@{/product/search}">
     <fieldset>
@@ -53,8 +59,8 @@
     <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
     <br>
     <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-        <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-        <hr>
+    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+    <hr>
 </div>
 </body>
 </html>
