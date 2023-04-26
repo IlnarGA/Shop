@@ -3,64 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <title>Главная страница</title>
-<!--    <link th:href="@{css/index.css}" rel="stylesheet"/>-->
-
+    <link th:href="@{css/index.css}" rel="stylesheet"/>
 </head>
+
 <body>
-<h1>Главная страница магазина</h1>
-<h2>Войти, зарегистрироваться в личном кабинете</h2>
-<form method="get" th:action="@{/authentication}">
-    <input type="submit" value="Вход">
-</form>
-<h3>Cортировка, поиск, фильтрация</h3>
-<form th:method="POST" th:action="@{/product/search}">
-    <fieldset>
-        <legend>Выберите параметры для сортировки, поиска, фильтрации:</legend>
-        <label for="search">Поиск по наименованию</label>
-        <input type="text" id="search" name="search" th:value="*{value_search}">
-        <br>
-        <p>Цена, руб</p>
-        <label for="ot">От</label>
-        <input type="text" name="ot" id="ot" th:value="*{value_price_ot}">
-        <label for="do">До</label>
-        <input type="text" name="do" id="do" th:value="*{value_price_do}">
-        <br>
-        <br>
-        <div>
-            <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
-            <label for="ascending_price">Отсортировать по возрастанию цены</label>
-            <input type="radio" id="descending_price" name="price" value="sorted_by_descending_price">
-            <label for="descending_price">Отсортировать по убыванию цены</label>
-            <p>Категория товаров: </p>
-            <input type="radio" id="furniture" name="contract" value="furniture">
-            <label for="furniture">Мебель</label>
-            <input type="radio" id="appliances" name="contract" value="appliances">
-            <label for="appliances">Бытовая техника</label>
-            <input type="radio" id="clothes" name="contract" value="clothes">
-            <label for="clothes">Одежда</label>
-            <br>
-            <br>
-            <input type="submit" value="Найти">
+<header class="header">
+
+    <img th:src="@{/pictures/logo_blue.svg}" alt="images">
+    <a href="#" class="header_a">Главная</a>
+    <a href="#" class="header_a">Избранное</a>
+    <a href="#" class="header_a">Корзина</a>
+    <a href="#" class="header_a">Описание</a>
+
+    <!-- <a href="authorization.html">Регистрация</a> -->
+
+    <!--    <a href="authorization.html" class="header_button">Войти</a>-->
+
+    <form method="get" th:action="@{/authentication}">
+        <input type="submit" value="Вход" class="header_button">
+    </form>
+
+</header>
+
+<!-- Область между хеадер и футер -->
+<div class="main">
+
+    <!-- Изображение (карусель) -->
+    <div>
+        <img th:src="@{/pictures/9_L.webp}" alt="images" class="main_img"/>
+    </div>
+
+    <!-- Поиск, фльтрация @{/product/search}-->
+    <div>
+        <form th:method="POST" th:action="@{/product}" class="search">
+            <div>
+                <fieldset class="search_fieldset">
+                    <p>Поиск</p>
+                    <label for="search">Поиск по наименованию</label>
+                    <input type="text" id="search" name="search" th:value="*{value_search}">
+                    <p>Цена, руб</p>
+                    <label for="ot">От</label>
+                    <input type="text" name="ot" id="ot" th:value="*{value_price_ot}">
+                    <label for="do">До</label>
+                    <input type="text" name="do" id="do" th:value="*{value_price_do}">
+
+                    <div>
+                        <br>
+                        <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
+                        <label for="ascending_price">Отсортировать по возрастанию цены</label>
+                        <br>
+                        <br>
+                        <input type="radio" id="descending_price" name="price" value="sorted_by_descending_price">
+                        <label for="descending_price">Отсортировать по убыванию цены</label>
+                        <p>Категория товаров: </p>
+                        <input type="radio" id="furniture" name="contract" value="furniture">
+                        <label for="furniture">Мебель</label>
+                        <input type="radio" id="appliances" name="contract" value="appliances">
+                        <label for="appliances">Бытовая техника</label>
+                        <input type="radio" id="clothes" name="contract" value="clothes">
+                        <label for="clothes">Одежда</label>
+                        <br>
+                        <br>
+                        <input type="submit" value="Найти" class="search_submit">
+                    </div>
+                </fieldset>
+            </div>
+            <!-- Реклама -->
+            <div>
+                <img th:src="@{/pictures/maxresdefault.jpg}" alt="images" class="search_img"/>
+            </div>
+        </form>
+        <p>Результат поиска, cортировки, фильтрации</p>
+        <div class="searchs_result">
+
+            <div th:each="product : ${search_product}" class="search_result">
+                <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+
+                <p th:text="'Цена: ' + ${product.getPrice()}"></p>
+                <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+
+            </div>
         </div>
-    </fieldset>
-</form>
-<hr>
-<h3>Результат поиска, cортировки, фильтрации</h3>
-<div th:each="product : ${search_product}">
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
-    <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-    <hr>
+        <!-- Товары -->
+        <p>Доступные товары!</p>
+        <div class="products">
+            <div th:each="product : ${products}" class="product">
+                <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
+
+                <p th:text="'Цена: ' + ${product.getPrice()} + '₽'"></p>
+                <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
+            </div>
+        </div>
+
+        <!-- Описание -->
+        <div class="description">
+            "1000 мелочей" - это интернет-магазин, который предлагает широкий ассортимент товаров. Здесь вы найдете все
+            разрешенные товары - от бытовой химии и косметики до электроники и домашнего текстиля. Магазин заботится о
+            своих клиентах и предоставляет только качественные товары от проверенных поставщиков.
+            <br/>
+            <br/>
+            В магазине "1000 мелочей" вы найдете все необходимые товары для дома, работы и отдыха. Здесь представлены
+            товары для ухода за собой и своим домом, а также товары для здоровья и красоты. Вы можете выбрать нужный вам
+            товар из широкого ассортимента, и мы доставим его прямо к вам домой.
+            <br/>
+            <br/>
+            Наши консультанты всегда готовы помочь вам с выбором товара и ответить на все ваши вопросы. Мы ценим каждого
+            клиента и всегда стремимся предоставить лучший сервис и самые выгодные предложения. Благодаря нашему
+            интернет-магазину "1000 мелочей" вы можете с легкостью купить все необходимые товары, не выходя из дома.
+        </div>
+    </div>
 </div>
-<hr>
-<h3>Доступные товары: </h3>
-<div th:each="product : ${products}">
-    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" width="300px">
-    <br>
-    <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}"></a>
-    <p th:text="'Цена: ' + ${product.getPrice()}"></p>
-    <hr>
-</div>
+
+<!-- Левая панель -->
+<sidebar class="sidebar"></sidebar>
+
+<!-- Правая панель -->
+<aside class="aside"></aside>
+
+<!-- Нижняя панель (футер) -->
+<footer class="footer">
+    <div style="order: 1" id="logo_footer">
+        <img th:src="@{/pictures/logo_blue.svg}" alt="images">
+    </div>
+    <div style="order: 2">
+        <ul type="none">
+            <h3>Описание</h3>
+            <li>Все услуги</li>
+            <li>Способы доставки и лимиты</li>
+            <li>Правовая информация</li>
+        </ul>
+    </div>
+    <div style="order: 3">
+        <ul type="none">
+            <h3>Полезная информация</h3>
+            <li>Ограничения</li>
+            <li>Часто задаваемые вопросы</li>
+            <li>Способы оплаты</li>
+        </ul>
+    </div>
+    <div style="order: 4">
+        <ul type="none">
+            <h3>Помощь</h3>
+            <li>Контакты</li>
+            <li>Ситуации с посылками</li>
+            <li>Калькулятор доставки</li>
+        </ul>
+    </div>
+</footer>
 </body>
 </html>

@@ -22,18 +22,20 @@
 {
     border: 1px solid gray;
     color: grey;
-    font: Arial 14px;
+    /*font: Arial 14px;*/
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0 0 10px;
     padding: 15px 10px 15px 40px;
     width: 400px;
-    height: 45px;
-    background: url(https://lmsdo.rea.ru/pluginfile.php/31172/mod_resource/content/0/icons.png) no-repeat;
+    height: 25px;
+    /*background: url(https://lmsdo.rea.ru/pluginfile.php/31172/mod_resource/content/0/icons.png) no-repeat;*/
 }
 
 font
 {
     color: grey;
-    font: 14px Arial;
+    font: 18px Arial;
 
 }
 
@@ -74,7 +76,7 @@ font
     width: 450px;
     height: 50px;
     margin-top: 15px;
-    border-radius: 50px;
+    border-radius: 150px;
     color: white;
 }
 
@@ -89,3 +91,20 @@ img{
     width: 300px;
     margin-bottom: 100px;
 }
+
+.registration_a{
+    text-decoration: none;
+    color: rgba(43, 84, 159, 0.884);
+    font-size: 22px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.registration_a:hover{
+    color:rgb(246, 97, 9);
+}
+
+.error_a{
+    font-size: 22px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+

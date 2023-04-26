@@ -30,7 +30,8 @@ public class ProductController {
         return "/product/infoProduct";
     }
 
-    @PostMapping("/search")
+    // @PostMapping("/search")
+    @PostMapping("")
     public String productSearch(@RequestParam("search") String search, @RequestParam("ot") String ot, @RequestParam("do") String Do, @RequestParam(value = "price", required = false, defaultValue = "") String price, @RequestParam(value = "contract", required = false, defaultValue = "")String contract, Model model){
         model.addAttribute("products", productService.getAllProduct());
 

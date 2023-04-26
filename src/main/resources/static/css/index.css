@@ -43,11 +43,7 @@ aside {
     color: rgb(246, 97, 9);
     border-radius: 20px;
 }
-/*
-.header button:hover{
-  color: rgba(43, 84, 159, 0.884);
-  border-radius: 20px;
-} */
+
 
 .header_button {
     text-decoration: none;
@@ -95,7 +91,7 @@ p{
 .product{
     /* display: flex; */
     width: 300px;
-    margin: 50px 60px;
+    margin: 40px 10px;
     /* background-color: rgb(137, 147, 238); */
     float: left;
     /* padding-bottom: 15px; */
@@ -149,6 +145,31 @@ p{
     border-radius: 25px;
     padding: 5px 10px;
     border-color: rgba(128, 128, 128, 0.89);
+}
+
+.searchs_result{
+    display: inline-flex;
+}
+
+.search_result{
+    width: 300px;
+    margin: 40px 10px;
+    float: left;
+}
+
+.searchs_result a{
+    font-size: 20px;
+    text-decoration: none;
+    color: gray;
+}
+
+.search_result img{
+    width: 300px;
+    height: auto;
+}
+
+.search_result p{
+    margin:35px 0 10px 0;
 }
 
 .description{
